@@ -194,6 +194,26 @@ img {
     letter-spacing: -0.5px;
 }
 
+/* Transparent logo — mix-blend-mode:screen makes any white/light
+   background invisible on dark surfaces (header & footer) */
+.logo-img {
+    mix-blend-mode: screen;
+    background: transparent;
+    display: block;
+}
+
+/* Footer logo sizing */
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
 .navbar .nav-links {
     display: flex;
     gap: 32px;
@@ -619,6 +639,98 @@ img {
 }
 
 /* =========================================
+   Leadership Section
+   ========================================= */
+.leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.leader-card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 40px 40px;
+    text-align: left;
+}
+
+.leader-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
+}
+
+.leader-photo-wrap {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--secondary);
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(240, 130, 30, 0.25);
+}
+
+.leader-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+
+.leader-info {
+    flex: 1;
+}
+
+.leader-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    color: var(--primary);
+}
+
+.leader-quals {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.leader-role {
+    display: inline-block;
+    background-color: var(--secondary);
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+.leader-bio p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+
+.leader-bio p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================
    Footer
    ========================================= */
 .footer {
@@ -702,9 +814,30 @@ img {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+
+    .leadership-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
+    .leader-photo-wrap {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto 20px;
+    }
+
+    .leader-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px 28px;
+    }
+
+    .leader-info {
+        text-align: left;
+    }
+
     .header {
         height: 64px;
     }
