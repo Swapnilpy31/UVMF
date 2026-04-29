@@ -971,9 +971,16 @@ img {
         padding-top: 64px; /* match mobile header height */
     }
 
+    .carousel-slide.active {
+        display: flex;
+        flex-direction: column;
+    }
+
     .carousel-overlay {
-        position: absolute;
-        padding: 20px 0;
+        position: relative; /* stack below the image */
+        padding: 40px 24px;
+        background: linear-gradient(180deg, var(--primary) 0%, #112a38 100%);
+        height: auto;
     }
 
     .carousel-btn {
