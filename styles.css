@@ -291,36 +291,133 @@ img {
 }
 
 /* =========================================
-   Hero Section
+   Hero Section (Carousel)
    ========================================= */
-.hero {
+.hero-carousel {
     position: relative;
-    padding-top: 160px;
-    padding-bottom: 80px;
+    width: 100%;
     background-color: var(--primary);
-    color: var(--white);
     overflow: hidden;
+    padding-top: 80px; /* Account for fixed header */
 }
 
-.hero-bg-overlay {
+.carousel-container {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-slide {
+    display: none;
+    width: 100%;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.carousel-slide.active {
+    display: block;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.slide-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.carousel-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(26,58,75,1) 0%, rgba(60,170,220,0.8) 100%);
-    z-index: 1;
+    background: linear-gradient(90deg, rgba(26,58,75,0.7) 0%, rgba(26,58,75,0.2) 100%);
+    display: flex;
+    align-items: center;
 }
 
-.hero::after {
-    content: '';
+/* For slides that need centered text */
+.carousel-overlay:has(.centered-hero) {
+    background: linear-gradient(0deg, rgba(26,58,75,0.8) 0%, rgba(26,58,75,0.6) 100%);
+}
+
+.centered-hero {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: 1fr !important;
+}
+
+.centered-hero .hero-content {
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.centered-hero .hero-content p {
+    margin: 0 auto 32px;
+}
+
+/* Carousel Controls */
+.carousel-btn {
     position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(240,130,30,0.2) 0%, rgba(255,255,255,0) 70%);
-    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    backdrop-filter: blur(4px);
+}
+
+.carousel-btn:hover {
+    background: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.prev-btn {
+    left: 24px;
+}
+
+.next-btn {
+    right: 24px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background: var(--secondary);
+    width: 24px;
+    border-radius: 6px;
 }
 
 .hero-container {
@@ -870,9 +967,30 @@ img {
         font-size: 1rem;
     }
 
-    .hero {
-        padding-top: 100px;
-        padding-bottom: 56px;
+    .hero-carousel {
+        padding-top: 64px; /* match mobile header height */
+    }
+
+    .carousel-overlay {
+        position: absolute;
+        padding: 20px 0;
+    }
+
+    .carousel-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .prev-btn {
+        left: 8px;
+    }
+    
+    .next-btn {
+        right: 8px;
+    }
+
+    .carousel-dots {
+        bottom: 16px;
     }
 
     .hero-content h1 {

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/Favicon.png">
 </head>
 <body>
 
@@ -61,30 +62,115 @@
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-bg-overlay"></div>
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <h1>Every <span class="highlight">Ray of Hope</span></h1>
-                    <p>To be the catalyst for the socio-economic upliftment & empowerment of 5 million households by the year 2032. We bridge the gap between people’s aspirations and reality.</p>
-                    <div class="hero-buttons">
-                        <a href="#products" class="btn btn-primary">Explore Products</a>
-                        <a href="#about" class="btn btn-outline">Learn More</a>
+        <!-- Hero Section (Carousel) -->
+        <section id="home" class="hero-carousel">
+            <div class="carousel-container">
+                
+                <!-- Slide 1 -->
+                <div class="carousel-slide active">
+                    <img src="images/image1.png" alt="UVMF Impact" class="slide-image">
+                    <div class="carousel-overlay">
+                        <div class="container hero-container">
+                            <div class="hero-content">
+                                <h1>Every <span class="highlight">Ray of Hope</span></h1>
+                                <p>To be the catalyst for the socio-economic upliftment & empowerment of 5 million households by the year 2032. We bridge the gap between people’s aspirations and reality.</p>
+                                <div class="hero-buttons">
+                                    <a href="#products" class="btn btn-primary">Explore Products</a>
+                                    <a href="#about" class="btn btn-outline">Learn More</a>
+                                </div>
+                            </div>
+                            <div class="hero-image">
+                                <div class="glass-card stat-card">
+                                    <div class="stat-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h3>Transparent</h3>
+                                        <p>Financial Solutions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="glass-card stat-card">
-                        <div class="stat-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <h3>Transparent</h3>
-                            <p>Financial Solutions</p>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <img src="images/image2.png" alt="Empowering Entrepreneurs" class="slide-image">
+                    <div class="carousel-overlay">
+                        <div class="container hero-container">
+                            <div class="hero-content">
+                                <h1>Empowering <span class="highlight">Entrepreneurs</span></h1>
+                                <p>We provide accessible capital to small businesses and individuals, fostering growth and creating new opportunities in rural communities.</p>
+                                <div class="hero-buttons">
+                                    <a href="#contact" class="btn btn-primary">Get a Loan</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <img src="images/image3.png" alt="Financial Inclusion" class="slide-image">
+                    <div class="carousel-overlay">
+                        <div class="container hero-container centered-hero">
+                            <div class="hero-content text-center">
+                                <h1>Driving <span class="highlight">Financial Inclusion</span></h1>
+                                <p>Committed to reaching the unbanked and ensuring equitable access to financial resources for all.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-slide">
+                    <img src="images/image4.png" alt="Technology Driven" class="slide-image">
+                    <div class="carousel-overlay">
+                        <div class="container hero-container">
+                            <div class="hero-content">
+                                <h1>100% <span class="highlight">Cashless System</span></h1>
+                                <p>Leveraging cutting-edge cloud technology for secure, efficient, and transparent financial transactions with a 3-Day TAT.</p>
+                                <div class="hero-buttons">
+                                    <a href="#about" class="btn btn-primary">Our Process</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="carousel-slide">
+                    <img src="images/image5.png" alt="Community Trust" class="slide-image">
+                    <div class="carousel-overlay">
+                        <div class="container hero-container centered-hero">
+                            <div class="hero-content text-center">
+                                <h1>Building <span class="highlight">Trust</span></h1>
+                                <p>Our 99.99% collection track record stands as a testament to our transparent operations and strong community relationships.</p>
+                                <div class="hero-buttons" style="justify-content: center;">
+                                    <a href="#leadership" class="btn btn-primary">Meet Our Leaders</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-btn prev-btn" aria-label="Previous slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="carousel-btn next-btn" aria-label="Next slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+
+                <div class="carousel-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
+                    <span class="dot" data-slide="4"></span>
                 </div>
             </div>
         </section>
