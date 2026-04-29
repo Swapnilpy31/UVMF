@@ -119,31 +119,4 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlideShow();
     }
 
-    // Form submission mock
-    const contactForm = document.querySelector('.contact-form');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'Sending...';
-            btn.style.opacity = '0.8';
-            
-            // Mock API call
-            setTimeout(() => {
-                btn.textContent = 'Request Submitted!';
-                btn.style.backgroundColor = '#10b981';
-                btn.style.borderColor = '#10b981';
-                btn.style.color = '#fff';
-                
-                contactForm.reset();
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style = '';
-                }, 3000);
-            }, 1500);
-        });
-    }
 });
