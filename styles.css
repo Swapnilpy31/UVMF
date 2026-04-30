@@ -191,23 +191,21 @@ img {
     height: 100%;
 }
 
+/* Responsive Logo System */
 .logo {
     display: flex;
     align-items: center;
-}
-
-/* Transparent logo — mix-blend-mode:screen makes any white/light
-   background invisible on dark surfaces (header & footer) */
-.logo-img {
-    display: block;
-    max-width: 100%;
+    text-decoration: none;
+    flex-shrink: 0;
 }
 
 .header-logo-img {
-    height: 54px;
+    height: 50px;
     width: auto;
+    max-width: 180px;
     object-fit: contain;
     mix-blend-mode: screen;
+    display: block;
 }
 
 /* Footer logo sizing */
@@ -1087,11 +1085,16 @@ img {
     }
 
     .header {
-        height: 64px;
+        height: 60px;
+    }
+
+    .header-container {
+        padding: 0 16px;
     }
 
     .header-logo-img {
-        height: 40px !important;
+        height: 32px !important;
+        max-width: 120px !important;
     }
 
     .navbar {
@@ -1119,7 +1122,7 @@ img {
     }
 
     .hero-carousel {
-        padding-top: 64px; /* match mobile header height */
+        padding-top: 60px; /* match mobile header height */
     }
 
     .carousel-slide.active {
@@ -1216,7 +1219,8 @@ img {
 
 @media (max-width: 480px) {
     .header-logo-img {
-        height: 35px !important;
+        height: 28px !important;
+        max-width: 100px !important;
     }
 
     .container {
