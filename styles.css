@@ -200,9 +200,8 @@ img {
 }
 
 .header-logo-img {
-    height: 50px;
+    height: 60px;
     width: auto;
-    max-width: 180px;
     object-fit: contain;
     mix-blend-mode: screen;
     display: block;
@@ -1093,8 +1092,8 @@ img {
     }
 
     .header-logo-img {
-        height: 32px !important;
-        max-width: 120px !important;
+        height: 60px !important;
+        max-width: 180px !important;
     }
 
     .navbar {
@@ -1102,7 +1101,9 @@ img {
     }
 
     .mobile-menu-btn {
-        display: block;
+        display: block !important;
+        color: var(--white) !important;
+        z-index: 1001;
     }
 
     .section-padding {
