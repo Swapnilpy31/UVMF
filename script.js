@@ -1,53 +1,68 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Header shadow on scroll
-    const header = document.querySelector('.header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.35)';
-        } else {
-            header.style.boxShadow = '0 2px 12px rgba(0,0,0,0.25)';
-        }
-    });
+    // Utility: Debounce function to limit the rate at which a function can fire.
+    const debounce = (func, wait) => {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    };
 
-    // Mobile Menu Toggle
+    // --- Header shadow on scroll ---
+    const header = document.querySelector('.header');
+    if (header) {
+        window.addEventListener('scroll', debounce(() => {
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.35)';
+            } else {
+                header.style.boxShadow = '0 2px 12px rgba(0,0,0,0.25)';
+            }
+        }, 10));
+    }
+
+    // --- Mobile Menu Toggle ---
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const closeMenuBtn = document.querySelector('.close-menu-btn');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
 
-    function toggleMenu() {
-        mobileMenuOverlay.classList.toggle('active');
-        document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
+    if (mobileMenuBtn && mobileMenuOverlay) {
+        const toggleMenu = () => {
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
+        };
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        if (closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
     }
 
-    mobileMenuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
-
-    // Close menu when clicking a link
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
-    });
-
-    // Smooth Scrolling for anchor links
+    // --- Smooth Scrolling for anchor links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            
+            // Allow default behavior for external links if any
+            if (!targetId.startsWith('#')) return;
+
             e.preventDefault();
             
-            const targetId = this.getAttribute('href');
-            if(targetId === '#') {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+            if (targetId === '#') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
+
             const targetElement = document.querySelector(targetId);
-            
             if (targetElement) {
-                // Account for fixed header height
-                const headerHeight = document.querySelector('.header').offsetHeight;
+                const headerHeight = header ? header.offsetHeight : 0;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
   
@@ -59,59 +74,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Carousel Logic
+    // --- Carousel Logic ---
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
-    let currentSlide = 0;
-    let slideInterval;
-
+    
     if (slides.length > 0) {
-        function showSlide(index) {
+        let currentSlide = 0;
+        let slideInterval;
+
+        const showSlide = (index) => {
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
             
             slides[index].classList.add('active');
-            dots[index].classList.add('active');
+            if (dots[index]) dots[index].classList.add('active');
             currentSlide = index;
-        }
+        };
 
-        function nextSlide() {
-            let nextIndex = currentSlide + 1;
-            if (nextIndex >= slides.length) {
-                nextIndex = 0;
-            }
-            showSlide(nextIndex);
-        }
+        const nextSlide = () => {
+            showSlide((currentSlide + 1) % slides.length);
+        };
 
-        function prevSlide() {
-            let prevIndex = currentSlide - 1;
-            if (prevIndex < 0) {
-                prevIndex = slides.length - 1;
-            }
-            showSlide(prevIndex);
-        }
+        const prevSlide = () => {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
+        };
 
-        function startSlideShow() {
-            slideInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
-        }
+        const startSlideShow = () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        };
 
-        function resetSlideShow() {
+        const resetSlideShow = () => {
             clearInterval(slideInterval);
             startSlideShow();
+        };
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetSlideShow();
+            });
         }
 
-        // Event Listeners
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            resetSlideShow();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            resetSlideShow();
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetSlideShow();
+            });
+        }
 
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
@@ -120,23 +131,42 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Initialize
         startSlideShow();
     }
-    // FAQ Accordion Logic
+
+    // --- FAQ Accordion Logic ---
     const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        item.addEventListener('toggle', (e) => {
-            if (item.open) {
-                // Close all other open items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.open) {
-                        otherItem.removeAttribute('open');
-                    }
-                });
-            }
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            item.addEventListener('toggle', () => {
+                if (item.open) {
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.open) {
+                            otherItem.removeAttribute('open');
+                        }
+                    });
+                }
+            });
         });
-    });
+    }
+
+    // --- Intersection Observer for Reveal Animations ---
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Once revealed, no need to observe anymore
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15, // 15% of the element must be visible
+            rootMargin: '0px 0px -50px 0px' // Slightly earlier reveal
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    }
 
 });
