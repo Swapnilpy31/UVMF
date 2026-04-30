@@ -198,9 +198,8 @@ img {
 }
 
 .header-logo-img {
-    height: 85%; /* Responsive to header height */
+    height: 100%; /* Fill header height exactly */
     width: auto;
-    max-width: 220px;
     object-fit: contain;
     mix-blend-mode: screen;
     display: block;
@@ -1093,8 +1092,8 @@ img {
     }
 
     .header-logo-img {
-        height: 80% !important; /* Responsive to 60px header */
-        max-width: 140px !important;
+        height: 100% !important; /* Match 60px header exactly */
+        max-width: none !important;
     }
 
     .navbar {
@@ -1224,8 +1223,8 @@ img {
 
 @media (max-width: 480px) {
     .header-logo-img {
-        height: 28px !important;
-        max-width: 100px !important;
+        height: 100% !important; /* Match 60px header exactly */
+        max-width: none !important;
     }
 
     .container {
