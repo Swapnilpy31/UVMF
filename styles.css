@@ -1091,7 +1091,7 @@ img {
     }
 
     .header-logo-img {
-        height: 45px;
+        height: 40px !important;
     }
 
     .navbar {
@@ -1215,6 +1215,10 @@ img {
 }
 
 @media (max-width: 480px) {
+    .header-logo-img {
+        height: 35px !important;
+    }
+
     .container {
         padding: 0 16px;
     }
