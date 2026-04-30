@@ -36,8 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
+            if(targetId === '#') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
@@ -118,5 +123,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize
         startSlideShow();
     }
+    // FAQ Accordion Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        item.addEventListener('toggle', (e) => {
+            if (item.open) {
+                // Close all other open items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.open) {
+                        otherItem.removeAttribute('open');
+                    }
+                });
+            }
+        });
+    });
 
 });

@@ -497,6 +497,59 @@ img {
 }
 
 /* =========================================
+   Features Section
+   ========================================= */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
+}
+
+.feature-number {
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(240, 130, 30, 0.08); /* Faint orange */
+    position: absolute;
+    top: -16px;
+    right: 16px;
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+}
+
+.feature-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 16px;
+    color: var(--primary);
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card p {
+    color: var(--text-light);
+    position: relative;
+    z-index: 1;
+    margin: 0;
+}
+
+/* =========================================
    About Section
    ========================================= */
 .about-grid {
@@ -617,6 +670,76 @@ img {
 
 .process-table tr:hover td {
     background-color: var(--bg-light);
+}
+
+/* =========================================
+   FAQ Section
+   ========================================= */
+.faq-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.faq-item[open] {
+    border-color: var(--secondary);
+    box-shadow: var(--shadow-md);
+}
+
+.faq-item summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none; /* Hide default triangle in many browsers */
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none; /* Hide default triangle in WebKit */
+}
+
+.faq-item summary h3 {
+    font-size: 1.15rem;
+    color: var(--primary);
+    margin: 0;
+    padding-right: 24px;
+    font-weight: 600;
+}
+
+/* Custom dropdown icon using a pseudo-element */
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--secondary);
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+    content: '−';
+    transform: rotate(180deg);
+}
+
+.faq-content {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.faq-content p {
+    margin-bottom: 0;
 }
 
 /* =========================================
@@ -912,7 +1035,8 @@ img {
         margin-bottom: 48px;
     }
 
-    .about-grid {
+    .about-grid,
+    .features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1025,7 +1149,8 @@ img {
         margin-top: 24px;
     }
 
-    .about-grid {
+    .about-grid,
+    .features-grid {
         grid-template-columns: 1fr;
     }
 
