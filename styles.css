@@ -191,17 +191,16 @@ img {
     height: 100%;
 }
 
-/* Responsive Logo System */
 .logo {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    flex-shrink: 0;
+    height: 100%;
 }
 
 .header-logo-img {
-    height: 60px;
+    height: 85%; /* Responsive to header height */
     width: auto;
+    max-width: 220px;
     object-fit: contain;
     mix-blend-mode: screen;
     display: block;
@@ -1092,8 +1091,8 @@ img {
     }
 
     .header-logo-img {
-        height: 60px !important;
-        max-width: 180px !important;
+        height: 80% !important; /* Responsive to 60px header */
+        max-width: 140px !important;
     }
 
     .navbar {
@@ -1101,9 +1100,12 @@ img {
     }
 
     .mobile-menu-btn {
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
         color: var(--white) !important;
-        z-index: 1001;
+        background: transparent;
+        z-index: 1002;
     }
 
     .section-padding {
