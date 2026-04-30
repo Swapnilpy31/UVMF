@@ -199,21 +199,31 @@ img {
 /* Transparent logo — mix-blend-mode:screen makes any white/light
    background invisible on dark surfaces (header & footer) */
 .logo-img {
-    mix-blend-mode: screen;
-    background: transparent;
     display: block;
+    max-width: 100%;
+}
+
+.header-logo-img {
+    height: 54px;
+    width: auto;
+    object-fit: contain;
+    mix-blend-mode: screen;
 }
 
 /* Footer logo sizing */
 .footer-logo {
     display: inline-block;
-    margin-bottom: 4px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 8px;
 }
 
 .footer-logo-img {
-    height: 60px;
+    height: 50px;
     width: auto;
     object-fit: contain;
+    display: block;
 }
 
 .navbar {
@@ -1078,6 +1088,10 @@ img {
 
     .header {
         height: 64px;
+    }
+
+    .header-logo-img {
+        height: 45px;
     }
 
     .navbar {
